@@ -3,12 +3,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                nodejs('Node') {
+                    echo 'Building Application...'
+                    sh 'npm install'
+                }
             }
-        }
-        stage('Test') {
-            steps {
-                sh './jenkins/scripts/test.sh'
+            stage('Test') {
+                steps {
+                    sh './jenkins/scripts/test.sh'
+                }
             }
         }
     }
